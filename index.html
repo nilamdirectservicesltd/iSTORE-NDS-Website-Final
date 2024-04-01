@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iStore NDS - NDS Appstore</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -500;
+        }
+
+        .travel_mainDiv {
+            border: 1px solid lightgrey;
+        }
+
+        .travel_mainDiv img {
+            width: 100%;
+            border-radius: 20px; /* Adding curve effect */
+        }
+
+        .travel_mainDiv h5,
+        .travel_mainDiv p {
+            margin: 20px;
+        }
+
+        .movie_head {
+            font-size: 20px;
+            padding: 6px 22px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .movie_head i {
+            float: right;
+        }
+
+        .movie_text span {
+            color: orange;
+        }
+
+        .book {
+            margin-bottom: 20px;
+        }
+
+        #contact iframe {
+            width: 100%;
+        }
+
+        #contact h3,
+        #contact h4,
+        #contact h5 {
+            color: white;
+        }
+        
+        #contact-button {
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        #contact-button a {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .freeservices_mainDiv img {
+                width: 80%;
+                height: auto;
+            }
+
+            .nilamdirectservices_mainDiv img {
+                width: 50%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<video autoplay loop muted poster="" id="myVideo">
+    <source src="background.mp4" type="video/mp4">
+</video>
+
+<nav class="navbar navbar-inverse" style="position: sticky; top: 0; z-index: 99999">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">iStore NDS - NDS Appstore</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="page-header text-danger" id="free services"><b style="color: white; font-weight: bold;">NO ADS ONLY ON NILAM DIRECT COMPANY PRODUCTS</b></h2>
+    <h2 class="page-header" id="About iStore NDS"><b style="color: white; font-weight: bold;">About iStore NDS</b></h2>
+    <center>
+        <div class="freeservices_mainDiv">
+            <img src="nds new logo istore.png" width="600px" height="500px">
+            <h4 class="text-capitalize"><kbd style="color: white; font-weight: bold;">iStore NDS</kbd></h4>
+            <hr>
+            <h5 class="text-success text-capitalize" style="color: white; font-weight: bold;">The Future of NDS: Welcome to iStore</h5>
+            <p class="text-muted" style="color: white;">Craving classic NDS games and fresh titles from other companies? Crack open the iStore Vault! Dive into a secure library of NDS gems and explore a treasure trove of apps. Enjoy lifetime updates for your NDS games, while keeping other apps current. It's the all-in-one playground for endless play!</p>
+        </div>
+    </center>
+</div>
+
+<br><br>
+
+<center>
+    <div class="nilamdirectservices_mainDiv">
+        <img src="nds payments library.png" width="250px" height="200px">
+        <h4 class="text-capitalize"><kbd style="color: white; font-weight: bold;">NDS Payment Library APK</kbd></h4>
+        <hr>
+        <h5 class="text-success text-capitalize" style="color: white; font-weight: bold;">Download the NDS Payment Library APK now!</h5>
+        <p class="text-muted text-capitalize" style="color: white;">Click the link below to download:</p>
+        <a href="https://www.mediafire.com/file/z9zh2f1sae9i4g6/_NDP_Library_17977957.apk/file" class="btn btn-primary" target="_blank">Download NDS Payment Library APK</a>
+    </div>
+</center>
+
+<br><br>
+
+<!-- Contact Section -->
+<div class="container" id="contact">
+    <h2 class="page-header" style="color: white; font-weight: bold; text-align: center;">CONTACT</h2>
+    <p style="color: white; text-align: center;">If you have any questions or need assistance, please feel free to contact us via email:</p>
+    <div id="contact-button">
+        <a href="#" onclick="openGmail()">Contact Us</a>
+    </div>
+</div>
+
+<script>
+    function openGmail() {
+        var url = 'https://mail.google.com/';
+        window.open(url);
+        setTimeout(function () {
+            var mailtoLink = 'mailto:team.nilamdirectservices@gmail.com?subject=Having%20a%20trouble!';
+            window.location.href = mailtoLink;
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>
