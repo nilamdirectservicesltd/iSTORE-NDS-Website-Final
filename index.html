@@ -3,355 +3,372 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iStore - NDS Appstore</title>
-    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>iStore NDS | Premium Financial Tools</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#FFDCDC',  // Soft pink
-                        secondary: '#FFD6BA',  // Peach
-                        accent: '#FFE8CD',    // Light orange
-                        dark: '#333333',       // Dark text
-                        light: '#FFF2EB'       // Cream
-                    },
-                    fontFamily: {
-                        sans: ['Red Hat Display', 'sans-serif']
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in',
-                        'slide-up': 'slideUp 0.5s ease-out',
-                        'float': 'float 3s ease-in-out infinite'
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' }
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' }
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-1: #f5f5f5;
+            --gray-2: #e0e0e0;
+            --gray-3: #9e9e9e;
+            --red: #ff0000;
+        }
+        
         body {
-            background-color: #FFF2EB;
-            color: #333333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--gray-1);
+            color: var(--black);
+            line-height: 1.6;
         }
         
-        .hero-gradient {
-            background: linear-gradient(135deg, rgba(255,220,220,0.95) 0%, rgba(255,214,186,0.5) 100%);
+        .navbar {
+            background-color: var(--white);
+            box-shadow: 0 1px 10px rgba(0,0,0,0.05);
         }
         
-        .card-hover {
+        .hero {
+            background: linear-gradient(135deg, var(--white) 0%, var(--gray-1) 100%);
+            padding: 5rem 0;
+        }
+        
+        .app-card {
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid var(--gray-2);
             transition: all 0.3s ease;
-            background-color: #FFE8CD;
+            overflow: hidden;
         }
         
-        .card-hover:hover {
+        .app-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            background-color: #FFD6BA;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-color: var(--gray-3);
         }
         
-        .nav-link {
-            position: relative;
+        .app-icon {
+            width: 64px;
+            height: 64px;
+            background-color: var(--black);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
         }
         
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #FFD6BA;
-            transition: width 0.3s ease;
+        .app-icon i {
+            color: var(--white);
+            font-size: 28px;
         }
         
-        .nav-link:hover:after {
-            width: 100%;
-        }
+        .app-icon.payment { background-color: #333333; }
+        .app-icon.istore { background-color: #222222; }
+        .app-icon.upi { background-color: #444444; }
+        .app-icon.email { background-color: #555555; }
+        .app-icon.library { background-color: #666666; }
         
         .download-btn {
+            background-color: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-weight: 500;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            background-color: #FFD6BA;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .download-btn:hover {
-            background-color: #FFB78A;
+            background-color: var(--gray-3);
+            color: var(--black);
         }
         
-        .download-btn:after {
+        .download-btn i {
+            font-size: 14px;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: all 0.5s ease;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--red);
         }
         
-        .download-btn:hover:after {
-            left: 100%;
+        .footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 3rem 0;
         }
         
-        .social-icon {
-            transition: all 0.3s ease;
+        /* Nothing OS inspired animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .social-icon:hover {
-            transform: scale(1.2);
+        .animate-fade {
+            animation: fadeIn 0.6s ease-out forwards;
         }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
     </style>
 </head>
-<body class="font-sans">
-    <!-- Header -->
-    <header class="bg-primary shadow-md fixed w-full top-0 z-50">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-3">
-                    <img src="iStore.png" alt="iStore Logo" class="h-10 w-auto rounded-lg shadow-sm">
-                    <h1 class="text-2xl font-bold text-gray-800">iStore <span class="text-gray-900">NDS</span></h1>
-                </div>
-                <nav class="hidden md:block">
-                    <ul class="flex space-x-8">
-                        <li><a href="#about" class="nav-link text-gray-800 hover:text-gray-900 font-medium">About</a></li>
-                        <li><a href="#downloads" class="nav-link text-gray-800 hover:text-gray-900 font-medium">Downloads</a></li>
-                        <li><a href="#contact" class="nav-link text-gray-800 hover:text-gray-900 font-medium">Contact</a></li>
-                    </ul>
-                </nav>
-                <button class="md:hidden text-gray-800 focus:outline-none">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <span style="color: var(--red);">i</span>Store NDS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#apps">Apps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero-gradient pt-32 pb-20 px-6">
-        <div class="container mx-auto text-center animate-fade-in">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800 leading-tight">
-                Purely Nilam Direct: <br>
-                <span class="text-gray-900">Where Quality Speaks Louder than Ads!</span>
-            </h2>
-            <p class="text-lg text-gray-700 max-w-3xl mx-auto">
-                Discover premium financial tools with our curated collection of secure payment applications
-            </p>
-            <div class="mt-10 animate-float">
-                <i class="fas fa-arrow-down text-3xl text-gray-800"></i>
+    <section class="hero">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-3 animate-fade">iStore NDS</h1>
+            <p class="lead text-muted mb-5 animate-fade delay-1">Premium financial tools for modern businesses and individuals</p>
+            <a href="#apps" class="btn btn-dark btn-lg px-4 animate-fade delay-2">Explore Apps</a>
+        </div>
+    </section>
+
+    <!-- Apps Section -->
+    <section id="apps" class="py-5 bg-white">
+        <div class="container py-5">
+            <h2 class="section-title mb-5 animate-fade">Our Applications</h2>
+            
+            <div class="row g-4">
+                <!-- NDS Payment Library -->
+                <div class="col-md-6 col-lg-4 animate-fade delay-1">
+                    <div class="app-card h-100 p-4">
+                        <div class="app-icon payment">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-2">NDS Payment Library</h3>
+                        <p class="text-muted mb-3">Comprehensive payment solutions library</p>
+                        <a href="https://mega.nz/file/3oxiyYCB#tRoFdYTL4RxoQmvo8hNIAuDUVxFfgdEgJrTof8jd2Ro" class="download-btn">
+                            <i class="fas fa-download"></i> Download APK
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- NDS iStore -->
+                <div class="col-md-6 col-lg-4 animate-fade delay-2">
+                    <div class="app-card h-100 p-4">
+                        <div class="app-icon istore">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-2">NDS iStore</h3>
+                        <p class="text-muted mb-3">Your gateway to premium apps</p>
+                        <a href="https://mega.nz/file/a4oxDZjZ#8dwt837qf_QuZp-kFjalacqIT_w_9J4V5wvpFKp-DN8" class="download-btn">
+                            <i class="fas fa-download"></i> Download APK
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- UPI Code Generator -->
+                <div class="col-md-6 col-lg-4 animate-fade delay-3">
+                    <div class="app-card h-100 p-4">
+                        <div class="app-icon upi">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-2">UPI Code Generator</h3>
+                        <p class="text-muted mb-3">Create UPI codes instantly</p>
+                        <a href="https://mega.nz/file/Lp4CXJ4J#3qsx2eqKVYQIXNamT7xTmYKOAVuaNob63qBOe_UGkWo" class="download-btn">
+                            <i class="fas fa-download"></i> Download APK
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- NDS Payments UPI -->
+                <div class="col-md-6 col-lg-4 animate-fade delay-1">
+                    <div class="app-card h-100 p-4">
+                        <div class="app-icon payment">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-2">NDS Payments UPI</h3>
+                        <p class="text-muted mb-3">Secure UPI transactions</p>
+                        <a href="https://mega.nz/file/u8AngTQY#tWvgbmZMNzgDxgLtWB6zPpg-H2CpFj4c3OeeDoKchsA" class="download-btn">
+                            <i class="fas fa-download"></i> Download APK
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Credit Email Generator -->
+                <div class="col-md-6 col-lg-4 animate-fade delay-2">
+                    <div class="app-card h-100 p-4">
+                        <div class="app-icon email">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-2">Credit Email Generator</h3>
+                        <p class="text-muted mb-3">Professional credit notifications</p>
+                        <a href="https://mega.nz/file/fw5lnbiK#RIrJBZ89mtsiR4i01uKqyUPUvkqb24pVykXBcdshUWc" class="download-btn">
+                            <i class="fas fa-download"></i> Download APK
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- NDS Library -->
+                <div class="col-md-6 col-lg-4 animate-fade delay-3">
+                    <div class="app-card h-100 p-4">
+                        <div class="app-icon library">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-2">NDS Library</h3>
+                        <p class="text-muted mb-3">Essential resources collection</p>
+                        <a href="https://mega.nz/file/OtZjDLRY#GIT3wT99_JnsaUH77kcNWamVBMgshbwfF-2EFS3t8vs" class="download-btn">
+                            <i class="fas fa-download"></i> Download APK
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 px-6 bg-light">
-        <div class="container mx-auto max-w-5xl">
-            <div class="text-center mb-12 animate-fade-in">
-                <h2 class="text-3xl font-bold mb-4 text-gray-800">About iStore</h2>
-                <div class="w-20 h-1 bg-gray-800 mx-auto mb-6"></div>
-                <h3 class="text-2xl font-semibold text-gray-800 mb-4">iStore NDS</h3>
-                <p class="text-gray-700 mb-6">
-                    The Future of NDS: Welcome to iStore
-                </p>
-                <p class="text-gray-700 max-w-3xl mx-auto animate-slide-up">
-                    iStore NDS is your trusted destination for cutting-edge payment solutions and digital services. Our platform provides a secure and reliable suite of financial tools, from UPI integrations to email-based transaction systems. With lifetime updates and a focus on innovation, iStore ensures seamless transactions and next-generation financial security for businesses and individuals alike.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Downloads Section -->
-    <section id="downloads" class="py-16 px-6 bg-primary">
-        <div class="container mx-auto">
-            <div class="text-center mb-12 animate-fade-in">
-                <h2 class="text-3xl font-bold mb-4 text-gray-800">Our Applications</h2>
-                <div class="w-20 h-1 bg-gray-800 mx-auto"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- App Card 1 -->
-                <div class="p-6 rounded-xl shadow-md card-hover animate-slide-up" style="animation-delay: 0.1s">
-                    <div class="flex justify-center mb-4">
-                        <img src="nds-payments-library.png" alt="NDS Payment Library Logo" class="h-20 w-auto rounded-lg">
+    <section id="about" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="section-title mb-4">About iStore NDS</h2>
+                    <p class="lead">Cutting-edge payment solutions for modern businesses.</p>
+                    <p>iStore NDS provides a secure suite of financial tools designed to streamline your transactions and financial operations. Our focus on innovation and security ensures you get the best tools available.</p>
+                    <div class="d-flex mt-4">
+                        <div class="pe-4">
+                            <h3 class="fw-bold">100%</h3>
+                            <p class="small text-muted">Secure</p>
+                        </div>
+                        <div class="pe-4">
+                            <h3 class="fw-bold">24/7</h3>
+                            <p class="small text-muted">Support</p>
+                        </div>
+                        <div>
+                            <h3 class="fw-bold">Lifetime</h3>
+                            <p class="small text-muted">Updates</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-center text-gray-800 mb-2">NDS Payment Library</h3>
-                    <p class="text-gray-700 text-center mb-4">Comprehensive payment solutions library</p>
-                    <a href="https://mega.nz/file/3oxiyYCB#tRoFdYTL4RxoQmvo8hNIAuDUVxFfgdEgJrTof8jd2Ro" class="download-btn text-gray-800 px-6 py-2 rounded-full block text-center font-medium">
-                        Download APK
-                    </a>
                 </div>
-                
-                <!-- App Card 2 -->
-                <div class="p-6 rounded-xl shadow-md card-hover animate-slide-up" style="animation-delay: 0.2s">
-                    <div class="flex justify-center mb-4">
-                        <img src="nds-new-logo-istore.png" alt="NDS iStore Logo" class="h-20 w-auto rounded-lg">
+                <div class="col-lg-6">
+                    <div class="ratio ratio-16x9">
+                        <div class="bg-dark rounded" style="background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover;"></div>
                     </div>
-                    <h3 class="text-xl font-bold text-center text-gray-800 mb-2">NDS iStore</h3>
-                    <p class="text-gray-700 text-center mb-4">Your gateway to premium apps</p>
-                    <a href="https://mega.nz/file/a4oxDZjZ#8dwt837qf_QuZp-kFjalacqIT_w_9J4V5wvpFKp-DN8" class="download-btn text-gray-800 px-6 py-2 rounded-full block text-center font-medium">
-                        Download APK
-                    </a>
-                </div>
-                
-                <!-- App Card 3 -->
-                <div class="p-6 rounded-xl shadow-md card-hover animate-slide-up" style="animation-delay: 0.3s">
-                    <div class="flex justify-center mb-4">
-                        <img src="upi-qr-codes-logo-nds.png" alt="UPI Code Generator Logo" class="h-20 w-auto rounded-lg">
-                    </div>
-                    <h3 class="text-xl font-bold text-center text-gray-800 mb-2">UPI Code Generator</h3>
-                    <p class="text-gray-700 text-center mb-4">Create UPI codes instantly</p>
-                    <a href="https://mega.nz/file/Lp4CXJ4J#3qsx2eqKVYQIXNamT7xTmYKOAVuaNob63qBOe_UGkWo" class="download-btn text-gray-800 px-6 py-2 rounded-full block text-center font-medium">
-                        Download APK
-                    </a>
-                </div>
-                
-                <!-- App Card 4 -->
-                <div class="p-6 rounded-xl shadow-md card-hover animate-slide-up" style="animation-delay: 0.4s">
-                    <div class="flex justify-center mb-4">
-                        <img src="nds-payments-upi-app-logo.png" alt="NDS Payments UPI Logo" class="h-20 w-auto rounded-lg">
-                    </div>
-                    <h3 class="text-xl font-bold text-center text-gray-800 mb-2">NDS Payments UPI</h3>
-                    <p class="text-gray-700 text-center mb-4">Secure UPI transactions</p>
-                    <a href="https://mega.nz/file/u8AngTQY#tWvgbmZMNzgDxgLtWB6zPpg-H2CpFj4c3OeeDoKchsA" class="download-btn text-gray-800 px-6 py-2 rounded-full block text-center font-medium">
-                        Download APK
-                    </a>
-                </div>
-                
-                <!-- App Card 5 -->
-                <div class="p-6 rounded-xl shadow-md card-hover animate-slide-up" style="animation-delay: 0.5s">
-                    <div class="flex justify-center mb-4">
-                        <img src="debit-email-generator-logo-ndb.png" alt="Debit Email Generator Logo" class="h-20 w-auto rounded-lg">
-                    </div>
-                    <h3 class="text-xl font-bold text-center text-gray-800 mb-2">Debit Email Generator</h3>
-                    <p class="text-gray-700 text-center mb-4">Professional debit notifications</p>
-                    <a href="https://mega.nz/file/nooCALAa#8g1Ey8IzEDj5Txrl5_fmHxcXOKhMB6Z5QDNe_MOZzL4" class="download-btn text-gray-800 px-6 py-2 rounded-full block text-center font-medium">
-                        Download APK
-                    </a>
-                </div>
-                
-                <!-- App Card 6 -->
-                <div class="p-6 rounded-xl shadow-md card-hover animate-slide-up" style="animation-delay: 0.6s">
-                    <div class="flex justify-center mb-4">
-                        <img src="credit-email-generator-ndb-app-logo.png" alt="Credit Email Generator Logo" class="h-20 w-auto rounded-lg">
-                    </div>
-                    <h3 class="text-xl font-bold text-center text-gray-800 mb-2">Credit Email Generator</h3>
-                    <p class="text-gray-700 text-center mb-4">Professional credit notifications</p>
-                    <a href="https://mega.nz/file/fw5lnbiK#RIrJBZ89mtsiR4i01uKqyUPUvkqb24pVykXBcdshUWc" class="download-btn text-gray-800 px-6 py-2 rounded-full block text-center font-medium">
-                        Download APK
-                    </a>
-                </div>
-                
-                <!-- App Card 7 -->
-                <div class="p-6 rounded-xl shadow-md card-hover animate-slide-up" style="animation-delay: 0.7s">
-                    <div class="flex justify-center mb-4">
-                        <img src="donation-email-ndb-app-logo.png" alt="Donation Email Generator Logo" class="h-20 w-auto rounded-lg">
-                    </div>
-                    <h3 class="text-xl font-bold text-center text-gray-800 mb-2">Donation Email Generator</h3>
-                    <p class="text-gray-700 text-center mb-4">Elegant donation receipts</p>
-                    <a href="https://mega.nz/file/KsowHCrS#GSKIvvju2vKaoSExKguVJG2ydIUgmcLR1pHhkCfWUTs" class="download-btn text-gray-800 px-6 py-2 rounded-full block text-center font-medium">
-                        Download APK
-                    </a>
-                </div>
-                
-                <!-- App Card 8 -->
-                <div class="p-6 rounded-xl shadow-md card-hover animate-slide-up" style="animation-delay: 0.8s">
-                    <div class="flex justify-center mb-4">
-                        <img src="nds-library-new-logo.png" alt="NDS Library Logo" class="h-20 w-auto rounded-lg">
-                    </div>
-                    <h3 class="text-xl font-bold text-center text-gray-800 mb-2">NDS Library</h3>
-                    <p class="text-gray-700 text-center mb-4">Essential resources collection</p>
-                    <a href="https://mega.nz/file/OtZjDLRY#GIT3wT99_JnsaUH77kcNWamVBMgshbwfF-2EFS3t8vs" class="download-btn text-gray-800 px-6 py-2 rounded-full block text-center font-medium">
-                        Download APK
-                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 px-6 bg-light">
-        <div class="container mx-auto max-w-4xl text-center animate-fade-in">
-            <h2 class="text-3xl font-bold mb-4 text-gray-800">Contact Us</h2>
-            <div class="w-20 h-1 bg-gray-800 mx-auto mb-8"></div>
-            
-            <div class="bg-accent p-8 rounded-xl shadow-md max-w-2xl mx-auto animate-slide-up">
-                <div class="mb-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Email Support</h3>
-                    <p class="text-gray-700">
-                        <a href="mailto:team.nilamdirectservices@gmail.com" class="hover:text-gray-900 transition-colors">
-                            team.nilamdirectservices@gmail.com
+    <section id="contact" class="py-5 bg-white">
+        <div class="container py-5">
+            <h2 class="section-title mb-5">Contact Us</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h3 class="h5 fw-bold mb-3">Email Support</h3>
+                    <p class="mb-1"><i class="fas fa-envelope me-2"></i> team.nilamdirectservices@gmail.com</p>
+                    <p><i class="fas fa-envelope me-2"></i> nilamdirectservicesltd@gmail.com</p>
+                    
+                    <h3 class="h5 fw-bold mt-4 mb-3">Connect</h3>
+                    <div class="d-flex gap-3">
+                        <a href="https://www.instagram.com/nilamdirectservices.india/" class="text-dark">
+                            <i class="fab fa-instagram fa-lg"></i>
                         </a>
-                    </p>
-                    <p class="text-gray-700">
-                        <a href="mailto:nilamdirectservicesltd@gmail.com" class="hover:text-gray-900 transition-colors">
-                            nilamdirectservicesltd@gmail.com
+                        <a href="mailto:nilamdirectservicesltd@gmail.com" class="text-dark">
+                            <i class="fas fa-envelope fa-lg"></i>
                         </a>
-                    </p>
+                        <a href="https://nilamdirectbusiness.godaddysites.com/" class="text-dark">
+                            <i class="fas fa-globe fa-lg"></i>
+                        </a>
+                        <a href="https://x.com/nilamdirectSvcs" class="text-dark">
+                            <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                    </div>
                 </div>
-                
-                <div class="flex justify-center space-x-6 mt-8">
-                    <a href="https://www.instagram.com/nilamdirectservices.india/" target="_blank" class="social-icon text-gray-800 hover:text-gray-900 text-2xl">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="mailto:nilamdirectservicesltd@gmail.com" class="social-icon text-gray-800 hover:text-gray-900 text-2xl">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://nilamdirectbusiness.godaddysites.com/" target="_blank" class="social-icon text-gray-800 hover:text-gray-900 text-2xl">
-                        <i class="fas fa-globe"></i>
-                    </a>
-                    <a href="https://x.com/nilamdirectSvcs" target="_blank" class="social-icon text-gray-800 hover:text-gray-900 text-2xl">
-                        <i class="fab fa-twitter"></i>
-                    </a>
+                <div class="col-md-6">
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Your Name">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Email Address">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="3" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-dark">Send Message</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-6 text-center">
-            <div class="flex justify-center mb-4 space-x-6">
-                <a href="https://www.instagram.com/nilamdirectservices.india/" target="_blank" class="social-icon text-white hover:text-secondary">
-                    <i class="fab fa-instagram text-xl"></i>
-                </a>
-                <a href="mailto:nilamdirectservicesltd@gmail.com" class="social-icon text-white hover:text-secondary">
-                    <i class="fas fa-envelope text-xl"></i>
-                </a>
-                <a href="https://nilamdirectbusiness.godaddysites.com/" target="_blank" class="social-icon text-white hover:text-secondary">
-                    <i class="fas fa-globe text-xl"></i>
-                </a>
-                <a href="https://x.com/nilamdirectSvcs" target="_blank" class="social-icon text-white hover:text-secondary">
-                    <i class="fab fa-twitter text-xl"></i>
-                </a>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h3 class="h5 mb-3"><span style="color: var(--red);">i</span>Store NDS</h3>
+                    <p class="small">Premium financial tools for modern businesses and individuals.</p>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h3 class="h5 mb-3">Quick Links</h3>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#apps" class="text-white text-decoration-none">Apps</a></li>
+                        <li class="mb-2"><a href="#about" class="text-white text-decoration-none">About</a></li>
+                        <li><a href="#contact" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h3 class="h5 mb-3">Legal</h3>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Terms</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Privacy</a></li>
+                    </ul>
+                </div>
             </div>
-            <p class="mb-2 text-gray-300">&copy; <span id="currentYear"></span> iStore NDS. All rights reserved.</p>
-            <p class="text-gray-400 text-sm">Premium financial tools for modern businesses</p>
+            <hr class="my-4 bg-white opacity-10">
+            <div class="text-center small">
+                <p>&copy; <span id="currentYear"></span> iStore NDS. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Set current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         
-        // Smooth scrolling for anchor links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -359,13 +376,6 @@
                     behavior: 'smooth'
                 });
             });
-        });
-        
-        // Mobile menu toggle (you can implement this functionality)
-        const mobileMenuButton = document.querySelector('.md\\:hidden');
-        mobileMenuButton.addEventListener('click', () => {
-            // Implement your mobile menu toggle logic here
-            console.log('Mobile menu clicked');
         });
     </script>
 </body>
